@@ -1,6 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import cv2
+import os
 
 # Define the function to retrieve class labels
 def get_class_label_from_index(index):
@@ -33,6 +34,8 @@ while True:
     # Analyze the output
     class_idx = np.argmax(prediction[0])
     class_label = get_class_label_from_index(class_idx)
+    if class_label == 'no_helmet':
+        os.system("say 'Please wear helmet'")
     confidence = prediction[0][class_idx]
 
     # Draw the predicted class label and confidence on the image
